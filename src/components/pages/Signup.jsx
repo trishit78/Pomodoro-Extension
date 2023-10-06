@@ -1,52 +1,54 @@
-import React, { useState } from "react";
+import React, { useRef,useState } from "react"
 //import { useAuth } from "../../contexts/AuthContext"
-
+import './login.css'
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
-import "./login.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const navigate = useNavigate();
-  //const { login } = useAuth()
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  //const history = useHistory()
+function Signup() {
+const [formData, setFormData] = useState({
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+    //const { signup } = useAuth()
+ const [error, setError] = useState("")
+const [loading, setLoading] = useState(false)
+ const navigate = useNavigate()
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    console.log(emailRef);
-    try {
-      setError("");
-      setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      // history.push("/")
-    } catch {
-      setError("Failed to log in");
+
+ async function handleSubmit(e) {
+    e.preventDefault()
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match")
     }
 
-    setLoading(false);
-  }
+    try {
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value)
+     // history.push("/")
+    } catch {
+      setError("Failed to create an account")
+    }
 
+    setLoading(false)
+  }
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
-    });
-  };
+    })
+  }
 
   return (
     <>
-      <Container className="loginBox" sx={{ width: "250px" }}>
+    <Container className="loginBox" sx={{ width: "250px" }}>
         <Box sx={{ marginTop: "10px" }}>
           <Typography sx={{ textAlign: "center", fontWeight: "800" }}>
-            Log In
+            Sign Up
           </Typography>
-          {/* {error && <Alert variant="danger">{error}</Alert>} */}
           <form onSubmit={handleSubmit}>
             <TextField
               label="Email"
@@ -76,23 +78,39 @@ export default function Login() {
               value={formData.password}
               required
             />
+            <TextField
+              label="Confirm Password"
+              name="confirmPassword"
+              type="password"
+              variant="filled"
+              inputProps={{
+                style: {
+                  height: "15px",
+                },
+              }}
+              onChange={handleChange}
+              value={formData.confirmPassword}
+              required
+            />
             <Button
               disabled={loading}
               variant="contained"
               color="success"
               type="submit"
             >
-              Log In
+              Sign Up
             </Button>
           </form>
         </Box>
         <Box sx={{}}>
-          Need an account?{" "}
-          <Button variant="text" onClick={() => navigate("/signup")}>
-            Sign Up
+          Already have an account?{" "}
+          <Button variant="text" onClick={() => navigate("/login")}>
+            Log In
           </Button>
         </Box>
       </Container>
     </>
-  );
+  )
 }
+
+export default Signup
