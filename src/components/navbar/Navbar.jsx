@@ -1,29 +1,22 @@
-import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import './navbar.css'
 
 function Navbar({ isLoggedIn }) {
-    const navigate = useNavigate()
-    const handleClickLogin = () => {
-        !isLoggedIn ? navigate('/login') : navigate('/')
-    }
+  const navigate = useNavigate();
+  const handleClickLogin = () => {
+    !isLoggedIn ? navigate("/login") : navigate("/");
+  };
   return (
-    <AppBar position='sticky'>
-        <Toolbar>
-            <Box>
-                <IconButton
-                edge="start"
-                color="inherit"
-                    onClick={handleClickLogin}
-                >
-                    <AccountCircleIcon />
-                    <p>{isLoggedIn ? 'Logout' : 'Login' } </p>
-                </IconButton>
-            </Box>
-        </Toolbar>
-    </AppBar>
-  )
+    <div className="navbar">
+      <IconButton edge="start" color="inherit" onClick={handleClickLogin}>
+         <AccountCircleIcon fontSize="large"/>
+      </IconButton>
+      <Typography sx={{ marginRight: '5px' }}>{isLoggedIn ? "Logout" : "Login"} </Typography>
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;
