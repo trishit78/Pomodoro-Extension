@@ -1,6 +1,22 @@
-import { Box, Container, Typography } from "@mui/material"
-import { useEffect } from "react"
-import { Navigate } from "react-router-dom"
+import {
+  Box,
+  Button,
+  Container,
+  FormControlLabel,
+  List,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  Modal,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import "./home.css";
+import { useState } from "react";
 
 const WelcomePage = () => {
   return (
@@ -11,14 +27,66 @@ const WelcomePage = () => {
   );
 };
 function Home(props) {
-  const { isLoggedIn, userName } = props
-  
-  if(!isLoggedIn){
-    return (
-      <WelcomePage />
-    )
+  const { isLoggedIn, userName } = props;
+  const [modal, setModal] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData('text/plain', index);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e, newIndex) => {
+    e.preventDefault();
+    const oldIndex = e.dataTransfer.getData('text/plain');
+    const newTasks = [...tasks];
+    const [draggedTask] = newTasks.splice(oldIndex, 1);
+    newTasks.splice(newIndex, 0, draggedTask);
+    setTasks(newTasks);
+  };
+
+  //need to add this later after designing delete button
+  const deleteTask = (taskTitle) => {
+    const updatedTasks = tasks.filter((task) => task.title !== taskTitle);
+    setTasks(updatedTasks);
+  };
+
+  if (isLoggedIn) {
+    return <WelcomePage />;
   }
 
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    durationValue: "",
+    durationUnit: "minutes",
+    breakTime: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setModal(false);
+    setTasks(prev => [...prev, formData])
+    setFormData({
+      title: "",
+      description: "",
+      durationValue: "",
+      durationUnit: "minutes",
+      breakTime: "",
+    });
+  };
+  console.log("Form data:", tasks);
   return (
     <>
       <Container

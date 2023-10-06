@@ -1,6 +1,5 @@
 
 import { initializeApp } from "firebase/app"
-
 import { getAuth } from "firebase/auth"
 import dotenv from 'dotenv'
 //const dotenv = require('dotenv');
