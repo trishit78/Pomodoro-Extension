@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, redirect } from 'react-router-d
 import { DashBoard, Home, Login } from './components/pages'
 import { useState } from 'react'
 import Navbar from './components/navbar/Navbar'
+import Signup from './components/pages/Signup'
 
 function App() {
    const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home {...data} />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
           <Route path='/dashboard' element={<DashBoard />} />
         </Routes>
       </Router>
