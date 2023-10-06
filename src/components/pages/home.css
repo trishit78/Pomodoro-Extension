@@ -1,0 +1,40 @@
+
+.Welcome-text {
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: larger;
+    line-height: 40px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    max-width: 250px;
+    font-size: large;
+    color: #EE9322;
+}
+
+.login-text {
+    font-family: cursive;
+    font-weight: bolder;
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    color: #FFF2D8;
+}
+.modal {
+    width: 400px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F8F0E5  ;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
