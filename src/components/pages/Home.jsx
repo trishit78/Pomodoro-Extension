@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   FormControlLabel,
+  IconButton,
   List,
   ListItem,
   ListItemText,
@@ -17,6 +18,9 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import "./home.css";
 import { useState } from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
   return (
@@ -30,6 +34,7 @@ function Home(props) {
   const { isLoggedIn, userName } = props;
   const [modal, setModal] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate()
 
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
@@ -107,17 +112,31 @@ function Home(props) {
           <AddIcon />
           Add Task
         </Button>
-        <List sx={{ width: "200px" }}>
+        <Box>
+         {tasks.length > 0  &&
+        <List sx={{ width: "300px", maxHeight: '200px', overflow: 'auto', marginTop: '20px', padding: '20px', backgroundColor: '#BC7AF9', border: ' black', borderRadius: '10px' }}>
           {tasks.map((task, index) => (
             <ListItem draggable
             onDragStart={(e) => handleDragStart(e, index)}
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, index)}
-            key={index} alignItems="center">
-              <Typography>{task.title}</Typography>
+            key={index} alignItems="center"
+            sx={{ backgroundColor: '#FFA1F5', border: '', borderRadius: '10px', marginTop: '10px', height:'50px', display: 'flex', justifyContent: 'space-between' }}
+            >
+              <Typography sx={{maxWidth: '180px', overflow: 'hidden'}}>{task.title}</Typography>
+              <Box>
+              <IconButton onClick={() => navigate('dashboard')}>
+                <PlayCircleIcon sx={{ padding: 0 }}/>
+              </IconButton>
+              <IconButton onClick={() => deleteTask(task.title)}>
+                <DeleteIcon />
+              </IconButton>
+              </Box>
             </ListItem>
           ))}
         </List>
+        } 
+        </Box>
       </Container>
       <Modal open={modal} onClose={() => setModal(false)}>
         <Box className="modal">
