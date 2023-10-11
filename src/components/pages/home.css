@@ -38,3 +38,15 @@ form{
     flex-direction: column;
     gap: 10px;
 }
+.spotify{
+    
+   position: absolute;
+   top: 42%;
+   left: 94.5%;
+}
+
+.soundcloud{
+    position:absolute;
+    top:50%;
+    left:94.5%;
+}

@@ -24,10 +24,7 @@ const app = initializeApp(firebaseConfig)
 //   appId: process.env.REACT_APP_FIREBASE_APP_ID
 // })
 
-const auth = getAuth(app);
-export  {
-    app,auth
-}
+export const auth = getAuth(app);
 
 
 
