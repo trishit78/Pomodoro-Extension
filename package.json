@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "build-extension": "npm run build && copy src\\manifest.json dist\\ && copy src\\content.js dist\\",
+    "build-extension-shell": "npm run build && cp src/manifest.json dist/ && cp src/content.js dist/",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function Timer() {
-  let taskDuration = 60;
-  let breakTime = 5
+function Timer(props) {
+  let { taskDuration, breakTime } = props;
 
   const [time, setTime] = useState(taskDuration)
   

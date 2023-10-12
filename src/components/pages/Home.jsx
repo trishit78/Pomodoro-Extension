@@ -2,22 +2,18 @@ import {
   Box,
   Button,
   Container,
-  FormControlLabel,
   IconButton,
   List,
   ListItem,
-  ListItemText,
   MenuItem,
   Modal,
-  Radio,
-  RadioGroup,
   Select,
   TextField,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import "./home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { useNavigate } from "react-router-dom";
@@ -95,19 +91,28 @@ function Home(props) {
     });
   };
 
+  useEffect(() => {
+    chrome.storage.local.clear()
+    const data = {}
+    tasks.forEach((task,index) => {
+      data[index] = task
+      chrome.storage.local.set(data)
+    })
+  },[tasks])
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setModal(false);
     setTasks(prev => [...prev, formData])
+
     setFormData({
       title: "",
       description: "",
-      durationValue: "",
+      durationValue: 0,
       durationUnit: "minutes",
-      breakTime: "",
+      breakTime: 0,
     });
   };
-  console.log("Form data:", tasks);
   return (
     <>
       <Container
@@ -141,7 +146,7 @@ function Home(props) {
             >
               <Typography sx={{maxWidth: '180px', overflow: 'hidden'}}>{task.title}</Typography>
               <Box>
-              <IconButton onClick={() => navigate('dashboard')}>
+              <IconButton onClick={() => navigate('dashboard', { state: index })}>
                 <PlayCircleIcon sx={{ padding: 0 }}/>
               </IconButton>
               <IconButton onClick={() => deleteTask(task.title)}>
