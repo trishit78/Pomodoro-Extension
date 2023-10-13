@@ -12,11 +12,11 @@ function DashBoard(props) {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
 
-  // useEffect(() => {
-  //   chrome.storage.local.get([`${state}`]).then((res) => {
-  //     setData(res[state]);
-  //   });
-  // }, []);
+  useEffect(() => {
+    chrome.storage.local.get([`${state}`]).then((res) => {
+      setData(res[state]);
+    });
+  }, []);
 
   useEffect(() => {
     setVal(data.durationValue)
