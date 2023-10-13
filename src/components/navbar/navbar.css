@@ -11,3 +11,11 @@
     width: fit-content;
     align-content: center;
 }
+.home {
+    position: absolute;
+    left: 74%;
+}
+.dashboard {
+    position: absolute;
+    left: 82%;
+}

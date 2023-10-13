@@ -1,5 +1,6 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,19 +13,25 @@ function Navbar({ isLoggedIn }) {
   };
 
 
-
   
   return (
+    <div>
+      <div className="home">
+        <IconButton edge="start" color="inherit" onClick={() => navigate('/')}>
+          <HomeOutlinedIcon fontSize="large"/>
+        </IconButton>
+      </div>
+      <div className="dashboard">
+        <IconButton edge="start" color="inherit" onClick={() => navigate('/dashboard')}>
+          <TimerOutlinedIcon fontSize="large"/>
+        </IconButton>
+      </div>
     <div className="navbar">
       <IconButton edge="start" color="inherit" onClick={handleClickLogin}>
          <AccountCircleOutlinedIcon fontSize="large"/>
       </IconButton>
       <Typography sx={{ marginRight: '5px' }}>{isLoggedIn ? "Logout" : "Login"} </Typography>
-
-      {/* <button onClick={redirectToSpotify}>Go to Spotify</button> */}
-
-     
-    
+    </div>
     </div>
   );
 }
