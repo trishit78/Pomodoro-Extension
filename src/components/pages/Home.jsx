@@ -91,14 +91,14 @@ function Home(props) {
     });
   };
 
-  // useEffect(() => {
-  //   chrome.storage.local.clear()
-  //   const data = {}
-  //   tasks.forEach((task,index) => {
-  //     data[index] = task
-  //     chrome.storage.local.set(data)
-  //   })
-  // },[tasks])
+  useEffect(() => {
+    chrome.storage.local.clear()
+    const data = {}
+    tasks.forEach((task,index) => {
+      data[index] = task
+      chrome.storage.local.set(data)
+    })
+  },[tasks])
 
   const handleSubmit = (event) => {
     event.preventDefault();
