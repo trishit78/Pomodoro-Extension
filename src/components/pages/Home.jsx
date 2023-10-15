@@ -19,7 +19,8 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faMusic,faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
@@ -34,6 +35,32 @@ const WelcomePage = () => {
 };
 
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
+
+
+
+
+
+
+const quotes = [
+  "The only way to do great work is to love what you do. - Steve Jobs",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "Believe you can, and you're halfway there. -Theodore Roosevelt",
+  "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+];
 const openSpotifyHomePage = () => {
   window.open('https://open.spotify.com/artist/2eWsULF010CY3fWemRf22i', '_blank');
 };
@@ -47,6 +74,20 @@ function Home(props) {
   const [modal, setModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate()
+
+
+
+
+ 
+function getRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  return quotes[randomIndex];
+}
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
 
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData('text/plain', index);
@@ -91,14 +132,14 @@ function Home(props) {
     });
   };
 
-  useEffect(() => {
-    chrome.storage.local.clear()
-    const data = {}
-    tasks.forEach((task,index) => {
-      data[index] = task
-      chrome.storage.local.set(data)
-    })
-  },[tasks])
+  // useEffect(() => {
+  //   chrome.storage.local.clear()
+  //   const data = {}
+  //   tasks.forEach((task,index) => {
+  //     data[index] = task
+  //     chrome.storage.local.set(data)
+  //   })
+  // },[tasks])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -171,10 +212,53 @@ function Home(props) {
 
       <button className="soundcloud" onClick={openSoundcloudHomePage}>
         {/* <a href="https://soundcloud.com/luvemenot/sets/lofi-pomodoro-study-session" target="_blank" rel="noopener noreferrer"> */}
-        <FontAwesomeIcon icon={faMusic} className="fa-lg" />      
+        <FontAwesomeIcon icon={faMusic} className="fa-lg" />   
+         
         {/* </a> */}
       </button>
     </div>
+
+
+
+
+<div >
+      <button style={{ position: 'fixed', left: '0', top: '50%', transform: 'translateY(-50%)' }} onClick={handleOpen}>
+      <FontAwesomeIcon icon={faQuoteLeft} className="fa-lg" />
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2"    sx={{
+    fontSize: '24px', 
+    fontWeight: 'bold', 
+    color: '#333',
+    marginBottom: '10px', 
+    borderBottom: '2px solid #007bff', 
+    paddingBottom: '5px', // Space between title and underline
+  }}>
+            Today's Quote
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {getRandomQuote()}
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
       </Container>
       <Modal open={modal} onClose={() => setModal(false)}>
