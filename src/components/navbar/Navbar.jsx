@@ -17,20 +17,20 @@ function Navbar({ isLoggedIn }) {
   return (
     <div>
       <div className="home">
-        <IconButton edge="start" color="inherit" onClick={() => navigate('/')}>
+        <IconButton edge="start" sx={{color:'white'}}  onClick={() => navigate('/')}>
           <HomeOutlinedIcon fontSize="large"/>
         </IconButton>
       </div>
       <div className="dashboard">
-        <IconButton edge="start" color="inherit" onClick={() => navigate('/dashboard')}>
+        <IconButton edge="start" sx={{color:'white'}}   onClick={() => navigate('/dashboard')}>
           <TimerOutlinedIcon fontSize="large"/>
         </IconButton>
       </div>
     <div className="navbar">
-      <IconButton edge="start" color="inherit" onClick={handleClickLogin}>
+      <IconButton edge="start" sx={{color:'white'}} onClick={handleClickLogin}>
          <AccountCircleOutlinedIcon fontSize="large"/>
       </IconButton>
-      <Typography sx={{ marginRight: '5px' }}>{isLoggedIn ? "Logout" : "Login"} </Typography>
+      <Typography sx={{ marginRight: '5px',color:'white'  }}>{isLoggedIn ? "Logout" : "Login"} </Typography>
     </div>
     </div>
   );

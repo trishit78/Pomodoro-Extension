@@ -34,6 +34,10 @@ Clone the project
 ```bash
     npm run build-extension
    ```
+   For MAC/Linux users:
+```bash
+   npm run build-extension-shell
+   ```
 
 in the project folder, a dist folder will be created,
 Now go to the Chrome browser, click on the top right (three-dotted button), go to Extensions ->Manage Extensions 

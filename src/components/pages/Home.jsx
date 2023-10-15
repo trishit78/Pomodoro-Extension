@@ -45,6 +45,7 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius:'20px',
 };
 
 
@@ -132,14 +133,14 @@ function getRandomQuote() {
     });
   };
 
-  // useEffect(() => {
-  //   chrome.storage.local.clear()
-  //   const data = {}
-  //   tasks.forEach((task,index) => {
-  //     data[index] = task
-  //     chrome.storage.local.set(data)
-  //   })
-  // },[tasks])
+  useEffect(() => {
+    chrome.storage.local.clear()
+    const data = {}
+    tasks.forEach((task,index) => {
+      data[index] = task
+      chrome.storage.local.set(data)
+    })
+  },[tasks])
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -238,7 +239,8 @@ function getRandomQuote() {
     color: '#333',
     marginBottom: '10px', 
     borderBottom: '2px solid #007bff', 
-    paddingBottom: '5px', // Space between title and underline
+    paddingBottom: '5px',
+    
   }}>
             Today's Quote
           </Typography>
