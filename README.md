@@ -1,17 +1,18 @@
 
 # PRO-MO
-Created the ultimate productivity tool for software engineers, a Pomodoro extension, which helps individuals to increase productivity through deep work.
+Created the ultimate productivity tool for software engineers, a Pomodoro extension, which helps individuals increase productivity through deep work.
 
 
 
 ## Demo
 
-TO be done
+![video1552723449](https://github.com/trishit78/Pomodoro-Extension/assets/90523629/f10bf1bd-a36e-4265-98d2-e337ae9f4ae7)
+
 
 
 ## Run Locally
 
-To check the chrome extension you can run it locally 
+To check the Chrome extension you can run it locally 
 
 Clone the project
 
