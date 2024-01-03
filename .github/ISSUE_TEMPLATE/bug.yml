@@ -32,7 +32,13 @@ body:
     id: screenshots
     attributes:
       label: Put here any screenshots or videos (optional)
-  
+  - type: dropdown
+    id: assign
+    attributes:
+      label: "Would you like to work on this issue?"
+      options:
+        - "Yes"
+  - type: markdown
     attributes:
       value: |
         Thanks for reporting this issue! We will get back to you as soon as possible.
